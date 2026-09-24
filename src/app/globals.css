@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "@uploadthing/react/styles.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  /* Escuro profundo sem brilho global */
+  background-color: #050505;
+  color: #e5e7eb;
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #4c1d95 transparent;
+  }
+}
+
+@layer utilities {
+  @media (max-width: 767px) {
+    .desktop-only {
+      display: none !important;
+    }
+  }
+  @media (min-width: 768px) {
+    .mobile-only {
+      display: none !important;
+    }
+  }
+}

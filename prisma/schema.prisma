@@ -1,0 +1,208 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AccessStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+}
+
+enum PurchaseStatus {
+  PENDING
+  PAID
+  CANCELED
+  REFUNDED
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String?
+  email         String       @unique
+  emailVerified DateTime?
+  image         String?
+  bio           String?
+  githubUrl     String?
+  instagramUrl  String?
+  password_hash String?
+  role          Role         @default(USER)
+  access_status AccessStatus @default(PENDING)
+  created_at    DateTime     @default(now())
+  updated_at    DateTime     @updatedAt
+
+  accounts  Account[]
+  sessions  Session[]
+  progress  UserProgress[]
+  purchases Purchase[]
+  posts     Post[]
+  comments  Comment[]
+
+  @@map("users")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  
+  access_token       String?  
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  title       String
+  video_url   String
+  cover_url   String?
+  category    String?
+  is_featured Boolean  @default(false)
+  hero_type   String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  progress UserProgress[]
+
+  @@map("lessons")
+}
+
+model Ebook {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String?
+  cover_url   String?
+  file_url    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("ebooks")
+}
+
+model UserProgress {
+  id         String   @id @default(cuid())
+  user_id    String
+  lesson_id  String
+  progress   Float    @default(0)
+  completed  Boolean  @default(false)
+  updated_at DateTime @updatedAt
+
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lesson_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, lesson_id])
+  @@index([user_id])
+  @@index([lesson_id])
+  @@map("user_progress")
+}
+
+model Purchase {
+  id         String         @id @default(cuid())
+  user_id    String
+  payment_id String?
+  amount     Float
+  status     PurchaseStatus @default(PENDING)
+  created_at DateTime       @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([payment_id])
+  @@map("purchases")
+}
+
+model Post {
+  id         String   @id @default(cuid())
+  user_id    String
+  title      String
+  content    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user     User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  comments Comment[]
+
+  @@index([user_id])
+  @@map("posts")
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  post_id    String
+  user_id    String
+  content    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([post_id])
+  @@index([user_id])
+  @@map("comments")
+}
+
+model Announcement {
+  id         String   @id @default(cuid())
+  title      String
+  content    String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("announcements")
+}
+
+model PlatformSettings {
+  id           String   @id @default(cuid())
+  platformName String   @default("Comunidade Dev")
+  supportEmail String   @default("")
+  tiktokUrl    String   @default("")
+  instagramUrl String   @default("")
+  asaasKey     String   @default("")
+
+  is_maintenance Boolean @default(false)
+
+  updated_at   DateTime @updatedAt
+
+  @@map("platform_settings")
+}
