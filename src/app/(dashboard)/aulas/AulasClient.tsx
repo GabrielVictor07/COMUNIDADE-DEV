@@ -14,8 +14,15 @@ type Lesson = {
 
 function getYouTubeThumbnail(url: string) {
   if (!url) return null;
-  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^"&?\/\s]{11})/);
-  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+}
+
+function getValidCoverUrl(lesson: Lesson) {
+  if (lesson.cover_url && !lesson.cover_url.startsWith("/uploads/")) {
+    return lesson.cover_url;
+  }
+  return getYouTubeThumbnail(lesson.video_url);
 }
 
 export default function AulasClient({ initialLessons }: { initialLessons: Lesson[] }) {
@@ -92,9 +99,9 @@ export default function AulasClient({ initialLessons }: { initialLessons: Lesson
                 
                 {/* Background Image that fills the card */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  {(lesson.cover_url || getYouTubeThumbnail(lesson.video_url)) ? (
+                  {getValidCoverUrl(lesson) ? (
                     <img 
-                      src={lesson.cover_url || getYouTubeThumbnail(lesson.video_url)!} 
+                      src={getValidCoverUrl(lesson)!} 
                       alt={lesson.title}
                       className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-transform duration-700"
                     />

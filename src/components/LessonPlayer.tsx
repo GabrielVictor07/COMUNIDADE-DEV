@@ -9,7 +9,7 @@ function getEmbedUrl(url: string) {
   
   try {
     // YouTube
-    const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^"&?\/\s]{11})/);
+    const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
     if (ytMatch && ytMatch[1]) {
       return `https://www.youtube.com/embed/${ytMatch[1]}`;
     }

@@ -8,6 +8,19 @@ import Input from "@/components/Input";
 import FileUpload from "@/components/FileUpload";
 import { Plus, Pencil, Trash2, PlayCircle, Folder, Star } from "lucide-react";
 
+function getYouTubeThumbnail(url: string) {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+}
+
+function getValidCoverUrl(lesson: any) {
+  if (lesson.cover_url && !lesson.cover_url.startsWith("/uploads/")) {
+    return lesson.cover_url;
+  }
+  return getYouTubeThumbnail(lesson.video_url);
+}
+
 interface Lesson {
   id: string;
   title: string;
@@ -107,8 +120,8 @@ export default function AulasPage() {
       label: "Capa",
       render: (_: any, row: Lesson) => (
         <div className="w-16 h-10 rounded-md overflow-hidden bg-white/5 border border-white/10 flex-shrink-0">
-          {row.cover_url ? (
-            <img src={row.cover_url} alt="Capa" className="w-full h-full object-cover" />
+          {getValidCoverUrl(row) ? (
+            <img src={getValidCoverUrl(row)!} alt="Capa" className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/30 text-[10px]">Sem Capa</div>
           )}

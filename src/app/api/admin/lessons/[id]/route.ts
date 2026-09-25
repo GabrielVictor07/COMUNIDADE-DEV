@@ -35,9 +35,9 @@ export async function PUT(
   let finalCoverUrl = cover_url !== undefined ? (cover_url || null) : undefined;
   
   if (finalCoverUrl === null && video_url) {
-    const ytMatch = video_url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^"&?\/\s]{11})/);
+    const ytMatch = video_url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
     if (ytMatch && ytMatch[1]) {
-      finalCoverUrl = `https://img.youtube.com/vi/${ytMatch[1]}/maxresdefault.jpg`;
+      finalCoverUrl = `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`;
     }
   }
 
