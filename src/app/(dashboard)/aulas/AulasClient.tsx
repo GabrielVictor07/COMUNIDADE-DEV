@@ -9,7 +9,14 @@ type Lesson = {
   title: string;
   category: string | null;
   cover_url: string | null;
+  video_url: string;
 };
+
+function getYouTubeThumbnail(url: string) {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^"&?\/\s]{11})/);
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : null;
+}
 
 export default function AulasClient({ initialLessons }: { initialLessons: Lesson[] }) {
   const [search, setSearch] = useState("");
@@ -85,9 +92,9 @@ export default function AulasClient({ initialLessons }: { initialLessons: Lesson
                 
                 {/* Background Image that fills the card */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  {lesson.cover_url ? (
+                  {(lesson.cover_url || getYouTubeThumbnail(lesson.video_url)) ? (
                     <img 
-                      src={lesson.cover_url} 
+                      src={lesson.cover_url || getYouTubeThumbnail(lesson.video_url)!} 
                       alt={lesson.title}
                       className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-transform duration-700"
                     />

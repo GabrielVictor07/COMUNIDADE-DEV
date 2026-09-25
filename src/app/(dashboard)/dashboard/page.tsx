@@ -6,6 +6,12 @@ import Card from "@/components/Card";
 import { getFeaturedLessons, getLaunchHero, getFeaturedHero } from "@/server/lessons";
 import DashboardWidgets from "@/components/DashboardWidgets";
 
+function getYouTubeThumbnail(url: string) {
+  if (!url) return null;
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^"&?\/\s]{11})/);
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg` : null;
+}
+
 export default async function DashboardPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const resolvedParams = await searchParams;
   const error = resolvedParams.error;
@@ -99,7 +105,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
                 {/* Background Image that fills the card */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                   <img 
-                    src={lesson.cover_url || "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop"} 
+                    src={lesson.cover_url || getYouTubeThumbnail(lesson.video_url) || "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop"} 
                     alt={lesson.title}
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-transform duration-700"
                   />

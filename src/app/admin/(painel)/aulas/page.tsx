@@ -122,6 +122,20 @@ export default function AulasPage() {
       render: (_: any, row: Lesson) => row.category || <span className="text-white/30">-</span>,
     },
     {
+      key: "video_url",
+      label: "Link do Vídeo",
+      render: (_: any, row: Lesson) => (
+        <a 
+          href={row.video_url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-purple-400 hover:text-purple-300 underline text-sm max-w-[200px] truncate block"
+        >
+          Assistir
+        </a>
+      )
+    },
+    {
       key: "is_featured",
       label: "Em Destaque",
       render: (_: any, row: Lesson) => row.is_featured ? <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" /> : <span className="text-white/30">-</span>,
@@ -277,13 +291,12 @@ export default function AulasPage() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <FileUpload
-              label="Imagem de Capa (Opcional)"
-              accept="image/*"
+            <Input
+              label="URL da Imagem de Capa (Opcional)"
               value={form.cover_url}
-              onChange={(url) => setForm({ ...form, cover_url: url })}
+              onChange={(e) => setForm({ ...form, cover_url: e.target.value })}
+              placeholder="Deixe em branco para usar a capa do YouTube"
             />
-            <span className="text-[10px] text-gray-500">Recomendado: 1920x1080 (formato Widescreen 16:9).</span>
           </div>
 
           <div className="pt-4 flex justify-end gap-3 border-t border-white/10 mt-2">
