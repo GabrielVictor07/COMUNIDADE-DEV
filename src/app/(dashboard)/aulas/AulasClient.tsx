@@ -15,7 +15,7 @@ type Lesson = {
 function getYouTubeThumbnail(url: string) {
   if (!url) return null;
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
-  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hq720.jpg` : null;
 }
 
 function getValidCoverUrl(lesson: Lesson) {
@@ -103,6 +103,12 @@ export default function AulasClient({ initialLessons }: { initialLessons: Lesson
                     <img 
                       src={getValidCoverUrl(lesson)!} 
                       alt={lesson.title}
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (target.src.includes('hq720.jpg')) {
+                          target.src = target.src.replace('hq720.jpg', 'hqdefault.jpg');
+                        }
+                      }}
                       className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-transform duration-700"
                     />
                   ) : (

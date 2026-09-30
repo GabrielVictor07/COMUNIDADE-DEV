@@ -1,0 +1,122 @@
+{
+  "secret": "2a6edbcd-9e58-489b-ae83-5ecf6f6d806b",
+  "event": "purchase_approved",
+  "data": {
+    "id": "f31679fc-38d5-43c2-99db-a89cffc3c464",
+    "refId": "R5VNIPA",
+    "customer": {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "34999999999",
+      "docNumber": "12345678909",
+      "birthDate": null,
+      "docType": "cpf"
+    },
+    "address": null,
+    "shipping": null,
+    "affiliate": "affiliate@example.com",
+    "offer": {
+      "id": "B8BcHrY",
+      "name": "Special Offer",
+      "price": 10,
+      "image": null
+    },
+    "offer_type": "main",
+    "product": {
+      "name": "Produto Teste",
+      "id": "ff3fdf61-e88f-43b5-982a-32d50f112414",
+      "short_id": "AckhQ75",
+      "supportEmail": "teste@teste.com",
+      "type": "unique",
+      "invoiceDescription": ""
+    },
+    "checkout": 123,
+    "subscription": {
+      "id": "4f692bc7-2a18-49f7-8ac6-bbc4bc54c478",
+      "status": "active",
+      "current_period": 1,
+      "recurrence_period": 30,
+      "quantity_recurrences": 0,
+      "trial_days": 1,
+      "max_retries": 3,
+      "amount": "90.00",
+      "retry_interval": 1,
+      "paid_payments_quantity": 1,
+      "retention": "00:01:00",
+      "parent_order": "f31679fc-38d5-43c2-99db-a89cffc3c464",
+      "paymentMethod": "credit_card",
+      "customer": {
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "34999999999",
+        "docNumber": "12345678909",
+        "birthDate": null,
+        "docType": "cpf"
+      },
+      "product": "ff3fdf61-e88f-43b5-982a-32d50f112414",
+      "offer": "B8BcHrY",
+      "orders": [
+        "f31679fc-38d5-43c2-99db-a89cffc3c464"
+      ],
+      "next_payment_date": "2026-10-25T17:05:05.913909+00:00",
+      "createdAt": "2026-09-25T17:05:05.913909+00:00",
+      "updatedAt": "2026-09-25T17:05:05.913909+00:00",
+      "canceledAt": null
+    },
+    "subscription_period": 1,
+    "parent_order": "95M26wi",
+    "checkoutUrl": "https://pay.cakto.com.br/EXAMPLE?utm_source=test&utm_medium=webhook&utm_campaign=test_20260925&utm_term=example&utm_content=example",
+    "status": "paid",
+    "baseAmount": 100,
+    "discount": 10,
+    "amount": 90,
+    "commissions": [
+      {
+        "user": "teste@teste.com",
+        "totalAmount": 1.89,
+        "type": "producer",
+        "percentage": 80
+      }
+    ],
+    "fees": 0,
+    "couponCode": null,
+    "reason": "Motivo de recusa do cartão",
+    "refund_reason": "Motivo de reembolso",
+    "installments": 1,
+    "paymentMethod": "credit_card",
+    "paymentMethodName": "Cartão de Crédito",
+    "paidAt": "2026-09-25T17:05:05.913909+00:00",
+    "createdAt": "2026-09-25T17:05:05.913909+00:00",
+    "due_date": "2026-09-25T17:06:05.913909+00:00",
+    "refundedAt": null,
+    "chargedbackAt": null,
+    "canceledAt": null,
+    "utm_source": "test",
+    "utm_medium": "webhook",
+    "utm_campaign": "test_20260925",
+    "utm_term": "example",
+    "utm_content": "example",
+    "sck": null,
+    "fbc": null,
+    "fbp": null,
+    "card": {
+      "lastDigits": "4323",
+      "holderName": "Card Example",
+      "brand": "visa"
+    },
+    "boleto": {
+      "barcode": "03399853012970000154708032001011596630000000500",
+      "boletoUrl": "https://urlDePagamento.example.com",
+      "expirationDate": "2026-09-28"
+    },
+    "pix": {
+      "expirationDate": "2026-09-25T17:35:05.913909+00:00",
+      "qrCode": "pixqrcode"
+    },
+    "picpay": {
+      "qrCode": "picpaycode",
+      "paymentURL": "https://urlDePagamento.example.com",
+      "expirationDate": "2026-09-25T17:35:05.913909+00:00"
+    }
+  }
+}

@@ -11,7 +11,7 @@ import { Plus, Pencil, Trash2, PlayCircle, Folder, Star } from "lucide-react";
 function getYouTubeThumbnail(url: string) {
   if (!url) return null;
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
-  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hq720.jpg` : null;
 }
 
 function getValidCoverUrl(lesson: any) {
@@ -121,7 +121,17 @@ export default function AulasPage() {
       render: (_: any, row: Lesson) => (
         <div className="w-16 h-10 rounded-md overflow-hidden bg-white/5 border border-white/10 flex-shrink-0">
           {getValidCoverUrl(row) ? (
-            <img src={getValidCoverUrl(row)!} alt="Capa" className="w-full h-full object-cover" />
+            <img 
+              src={getValidCoverUrl(row)!} 
+              alt="Capa" 
+              className="w-full h-full object-cover" 
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src.includes('hq720.jpg')) {
+                  target.src = target.src.replace('hq720.jpg', 'hqdefault.jpg');
+                }
+              }}
+            />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/30 text-[10px]">Sem Capa</div>
           )}
@@ -288,7 +298,7 @@ export default function AulasPage() {
                   onChange={() => setForm({ ...form, hero_type: "LAUNCH" })}
                   className="w-4 h-4 text-rose-500 focus:ring-rose-500 bg-black/50 border-white/20"
                 />
-                <span className="text-sm text-gray-300">Exibir como "Lançamento"</span>
+                <span className="text-sm text-gray-300">Exibir como &quot;Lançamento&quot;</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -298,7 +308,7 @@ export default function AulasPage() {
                   onChange={() => setForm({ ...form, hero_type: "FEATURED" })}
                   className="w-4 h-4 text-rose-500 focus:ring-rose-500 bg-black/50 border-white/20"
                 />
-                <span className="text-sm text-gray-300">Exibir como "Destaque Principal"</span>
+                <span className="text-sm text-gray-300">Exibir como &quot;Destaque Principal&quot;</span>
               </label>
             </div>
           </div>

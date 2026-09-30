@@ -5,11 +5,12 @@ import { PlayCircle, BookOpen } from "lucide-react";
 import Card from "@/components/Card";
 import { getFeaturedLessons, getLaunchHero, getFeaturedHero } from "@/server/lessons";
 import DashboardWidgets from "@/components/DashboardWidgets";
+import LessonCoverImage from "@/components/LessonCoverImage";
 
 function getYouTubeThumbnail(url: string) {
   if (!url) return null;
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^"&?\/\s]{11})/);
-  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : null;
+  return match && match[1] ? `https://img.youtube.com/vi/${match[1]}/hq720.jpg` : null;
 }
 
 function getValidCoverUrl(lesson: any) {
@@ -111,9 +112,10 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
                 
                 {/* Background Image that fills the card */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <img 
+                  <LessonCoverImage 
                     src={getValidCoverUrl(lesson) || "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop"} 
                     alt={lesson.title}
+                    fallbackSrc="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600&auto=format&fit=crop"
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
