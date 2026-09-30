@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Flame } from "lucide-react";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -46,10 +47,10 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center gap-4 w-full sm:w-auto"
         >
-          <button className="button-neon group flex items-center justify-center gap-3 w-full sm:w-auto text-lg">
+          <Link href="/cadastro" className="button-neon group flex items-center justify-center gap-3 w-full sm:w-auto text-lg">
             QUERO ACESSAR POR R$ 29,90
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
           
           <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm text-zinc-500 font-medium">
             <span className="flex items-center gap-1">Pagamento único</span>

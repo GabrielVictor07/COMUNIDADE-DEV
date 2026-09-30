@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, Shield, Zap, Infinity, RefreshCw, Flame } from "lucide-react";
+import Link from "next/link";
 
 const benefits = [
   "Acesso à plataforma",
@@ -80,9 +81,9 @@ export function Pricing() {
               <p className="text-sm text-zinc-400">Pagamento único. Sem mensalidade.</p>
             </div>
 
-            <button className="button-neon w-full flex items-center justify-center gap-2 mb-8 text-lg font-bold">
+            <Link href="/cadastro" className="button-neon w-full flex items-center justify-center gap-2 mb-8 text-lg font-bold">
               QUERO MEU ACESSO
-            </button>
+            </Link>
 
             <div className="grid grid-cols-2 gap-y-4 gap-x-2 text-xs font-medium text-zinc-400">
               <div className="flex items-center justify-center gap-1.5">
