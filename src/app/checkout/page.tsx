@@ -20,7 +20,7 @@ export default async function CheckoutPage({ searchParams }: { searchParams: Pro
   return (
     <div className="min-h-screen bg-black flex flex-col relative overflow-hidden">
       {/* Efeitos de fundo */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#00ff66]/5 via-[#050505] to-[#050505] pointer-events-none -z-10"></div>
       
       {/* Exibir erro se houver */}
       {resolvedParams.error === "internal" && (
@@ -50,7 +50,7 @@ export default async function CheckoutPage({ searchParams }: { searchParams: Pro
           {/* Lado Esquerdo: Copy e Benefícios */}
           <div className="space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-purple-400 text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00ff66]/5 border border-[#00ff66]/20 rounded-full text-[#00ff66] text-sm font-medium mb-6">
                 <Lock className="w-4 h-4" />
                 Acesso Restrito
               </div>
@@ -70,7 +70,7 @@ export default async function CheckoutPage({ searchParams }: { searchParams: Pro
                 "E-books e materiais de apoio",
               ].map((benefit, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-purple-400 flex-shrink-0" />
+                  <CheckCircle2 className="w-6 h-6 text-[#00ff66] flex-shrink-0" />
                   <span className="text-white/80">{benefit}</span>
                 </li>
               ))}
@@ -78,8 +78,8 @@ export default async function CheckoutPage({ searchParams }: { searchParams: Pro
           </div>
 
           {/* Lado Direito: Card de Pagamento */}
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 blur-3xl rounded-full"></div>
+          <div className="bg-white/5 backdrop-blur-2xl border border-[#00ff66]/20 rounded-3xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#00ff66]/10 via-transparent to-transparent pointer-events-none"></div>
             
             <div className="relative z-10">
               <h2 className="text-2xl font-bold text-white mb-2">Acesso Completo</h2>
@@ -98,7 +98,7 @@ export default async function CheckoutPage({ searchParams }: { searchParams: Pro
                   href="https://pay.cakto.com.br/ojv5wt4_1138702"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(147,51,234,0.4)] hover:shadow-[0_0_30px_rgba(147,51,234,0.6)] hover:-translate-y-1"
+                  className="w-full flex items-center justify-center bg-[#00ff66] hover:bg-[#00cc52] text-black font-bold py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(0,255,102,0.4)] hover:shadow-[0_0_30px_rgba(0,255,102,0.6)] hover:-translate-y-1"
                 >
                   Garantir Meu Acesso
                 </a>
