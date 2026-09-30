@@ -16,7 +16,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
           Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: "Comunidade Dev <onboarding@resend.dev>",
+          from: "Comunidade Dev <suporte@comunidadedev.site>",
           to: email,
           subject: "Recuperação de Senha - Comunidade Dev",
           html: `
