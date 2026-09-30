@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
       {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[50vh] bg-[#00ff66]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#00ff66]/5 via-[#050505] to-[#050505] pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
         
@@ -76,7 +76,7 @@ export function Hero() {
             <div className="bg-[#00ff66] h-full rounded-full shadow-[0_0_10px_#00ff66]" style={{ width: '28.4%' }} />
           </div>
           <p className="text-xs text-zinc-400 text-left">
-            Quando o lote de 500 acessos acabar, o preço passa para R$ 69,90.
+            Quando o lote de 500 acessos acabar, o preço passa para R$ 67,90.
           </p>
         </motion.div>
 

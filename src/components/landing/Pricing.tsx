@@ -19,7 +19,7 @@ export function Pricing() {
   return (
     <section className="py-32 px-6 relative overflow-hidden">
       {/* Background glow behind pricing */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vh] bg-[#00ff66]/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#00ff66]/5 via-[#050505] to-[#050505] pointer-events-none" />
       
       <div className="container mx-auto max-w-6xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
@@ -69,7 +69,7 @@ export function Pricing() {
             <div className="text-center mt-6 mb-8">
               <h3 className="text-2xl font-bold mb-4">Entre agora por apenas</h3>
               <div className="flex items-center justify-center gap-3 mb-2">
-                <span className="text-zinc-500 line-through text-lg">R$ 69,90</span>
+                <span className="text-zinc-500 line-through text-lg">R$ 67,90</span>
                 <span className="text-sm font-semibold text-[#00ff66] bg-[#00ff66]/10 px-2 py-1 rounded">
                   500 primeiros acessos
                 </span>
@@ -101,7 +101,7 @@ export function Pricing() {
 
             <div className="mt-8 pt-6 border-t border-white/5 text-center">
               <p className="text-xs text-zinc-500">
-                Após os 500 primeiros acessos, o valor será atualizado para R$ 69,90.
+                Após os 500 primeiros acessos, o valor será atualizado para R$ 67,90.
               </p>
             </div>
           </div>

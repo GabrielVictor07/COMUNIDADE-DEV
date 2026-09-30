@@ -7,7 +7,7 @@ export function FinalCTA() {
   return (
     <section className="py-32 px-6 relative border-t border-white/5 bg-zinc-950 overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[50vh] bg-[#00ff66]/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-[#00ff66]/5 via-transparent to-transparent pointer-events-none" />
 
       <div className="container mx-auto max-w-4xl relative z-10 text-center">
         <motion.div
