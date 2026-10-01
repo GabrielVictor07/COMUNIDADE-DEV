@@ -100,7 +100,6 @@ export default function PerfilPage() {
           
           {/* Informações Pessoais */}
           <div className="bg-gradient-to-br from-purple-600/10 via-black/20 to-transparent backdrop-blur-3xl border border-white/5 p-8 rounded-3xl shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
             
             <div className="mb-8">
               <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
