@@ -24,7 +24,7 @@ export default function ComunidadePage() {
           Nossa comunidade acontece no Telegram! Lá você pode tirar dúvidas, fazer networking e interagir diretamente com os professores e outros alunos.
         </p>
         <a 
-          href="https://t.me/seu_link_aqui" 
+          href="https://t.me/+ljI1Tpdxol0xYjcx" 
           target="_blank" 
           rel="noopener noreferrer"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-[#2AABEE] hover:bg-[#229ED9] text-white font-bold rounded-2xl transition-all shadow-[0_0_20px_rgba(42,171,238,0.3)] hover:shadow-[0_0_30px_rgba(42,171,238,0.5)] hover:scale-105"
